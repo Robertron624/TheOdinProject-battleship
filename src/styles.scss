@@ -1,0 +1,53 @@
+@mixin desktop {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+main {
+    h1 {
+        font-size: 2rem;
+        color: var(--text);
+        
+    }
+    #container {
+        width: 90%;
+        max-width: 1100px;
+        padding: 2rem 0;
+        margin: 0 auto;
+        flex-direction: column;
+        gap: 2rem;
+
+        @include desktop {
+            flex-direction: row;
+        }
+
+        .game-board-wrapper {
+
+            h2 {
+                color: var(--text);
+                margin-bottom: 2rem;
+            }
+
+            table {
+            
+                tr {
+                    td {
+                        width: 2rem;
+                        height: 2rem;
+                        background-color: var(--text);
+                        color: var(--background);
+                        text-align: center;
+                        border: 1px solid var(--text);
+                        cursor: pointer;
+
+                        &.ship {
+                            background-color: var(--link);
+                            color: var(--background);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

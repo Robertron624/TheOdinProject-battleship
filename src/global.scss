@@ -30,6 +30,7 @@ body {
   line-height: 1.5;
   margin: 0;
   background-color: var(--background);
+  font-family: sans-serif, 'Open Sans', 'Helvetica Neue';
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -109,3 +110,60 @@ textarea:not([rows]) {
     --link-active: #ff6666;
   }
 }
+
+// utility classes
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+

@@ -1,10 +1,20 @@
-import Ship from './Ship'
+import Ship from './Ship.js'
 
 class GameBoard {
-  constructor (size = 10) {
+  constructor (size = 10, id) {
+    this.id = id
     this.size = size
     this.board = Array(this.size).fill(null).map(() => Array(this.size).fill(null))
     this.ships = []
+    this.player = null
+  }
+
+  setPlayer (player) {
+    this.player = player
+  }
+
+  getPlayer () {
+    return this.player
   }
 
   receiveAttack (x, y) {
@@ -49,6 +59,14 @@ class GameBoard {
         }
       }
       this.ships.push(ship)
+    } else {
+      console.info('Invalid placement', {
+        ship,
+        x,
+        y,
+        isVertical
+
+      })
     }
   }
 
