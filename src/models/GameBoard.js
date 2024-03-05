@@ -17,7 +17,12 @@ class GameBoard {
     return this.player
   }
 
+  isHit (x, y) {
+    return this.board[x][y] !== null
+  }
+
   receiveAttack (x, y) {
+    console.info("GameBoard's receiveAttack method called with x, y: ", x, y)
     if (this.board[x][y]) {
       this.board[x][y].hit(x, y)
       return true

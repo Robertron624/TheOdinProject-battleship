@@ -4,6 +4,11 @@
     }
 }
 
+header {
+    background-color: #d8cfcf;
+    padding: 1rem 0;
+}
+
 main {
     h1 {
         font-size: 2rem;
@@ -50,4 +55,10 @@ main {
             }
         }
     }
+}
+
+footer {
+    background-color: var(--background-2);
+    padding: 1rem 0;
+    color: var(--text);
 }

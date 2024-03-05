@@ -28,11 +28,19 @@ function main () {
 
   player.placeShip(carrier, 0, 0, true)
   domHandler.updateBoard(playerBoard)
-  console.info("player's board after placing carrier: ", playerBoard)
 
   player.placeShip(battleship, 1, 1, false)
   domHandler.updateBoard(playerBoard)
-  console.info("player's board after placing battleship: ", playerBoard)
+
+  // Placing ships for the computer
+  computer.placeShip(carrier, 0, 0, true)
+  domHandler.updateBoard(computerBoard)
+
+  computer.placeShip(battleship, 1, 1, false)
+  domHandler.updateBoard(computerBoard)
+
+  // attacking the player
+  playerBoard.receiveAttack(0, 0)
 }
 
 window.onload = main

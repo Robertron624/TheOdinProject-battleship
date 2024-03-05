@@ -6,10 +6,25 @@ class DomHandler {
   }
 
   #createBoard (board) {
-    // ad board id to the wrapper by using data-attribute
+    const boardPlayerName = board.player.name
 
     const table = document.createElement('table')
     table.classList.add('game-board')
+    table.dataset.player = boardPlayerName
+
+    // const isPlayerBoard = boardPlayerName === 'Player'
+
+    const cellClickHandler = (e) => {
+      const cell = e.target
+      const x = parseInt(cell.dataset.x)
+      const y = parseInt(cell.dataset.y)
+
+      if (board.player.name === 'Player') {
+        board.receiveAttack(x, y)
+        this.updateBoard(board)
+      }
+    }
+
     for (let i = 0; i < board.size; i++) {
       const row = document.createElement('tr')
       for (let j = 0; j < board.size; j++) {
@@ -22,6 +37,10 @@ class DomHandler {
         if (doesCellContainsShip) {
           cell.classList.add('ship')
         }
+
+        // if (board.board[i][j] && board.board[i][j].isHit(i, j)) {
+        //   cell.classList.add('hit')
+        // }
 
         row.appendChild(cell)
       }
@@ -53,14 +72,10 @@ class DomHandler {
     // find the table with the matching id
     const tableWrapper = this.container.querySelector(`[data-id="${boardId}"]`)
 
-    // remove the old table
-    tableWrapper.innerHTML = ''
+    const tableToDelete = tableWrapper.querySelector('table')
+    tableWrapper.removeChild(tableToDelete)
 
-    // create a new table
-    const boardPlayerName = document.createElement('h2')
-    boardPlayerName.textContent = board.player.name
     const table = this.#createBoard(board)
-    tableWrapper.appendChild(boardPlayerName)
     tableWrapper.appendChild(table)
 
     // update the boards array

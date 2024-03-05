@@ -31,6 +31,12 @@ body {
   margin: 0;
   background-color: var(--background);
   font-family: sans-serif, 'Open Sans', 'Helvetica Neue';
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -84,6 +90,7 @@ textarea:not([rows]) {
 
 :root {
   --background: #f2f2f2;
+  --background-2: #e6e6e6;
   --text: #1a1a1a;
   --text-muted: #666;
   --border: #e6e6e6;
@@ -100,6 +107,7 @@ textarea:not([rows]) {
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #1a1a1a;
+    --background-2: #333;
     --text: #f2f2f2;
     --text-muted: #b3b3b3;
     --border: #333;
