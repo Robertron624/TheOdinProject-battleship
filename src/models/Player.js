@@ -18,8 +18,19 @@ class Player {
     return result
   }
 
+  makeRandomAttack (opponent) {
+    let x = Math.floor(Math.random() * this.gameBoard.size)
+    let y = Math.floor(Math.random() * this.gameBoard.size)
+    while (opponent.gameBoard.isShipHit(x, y) || this.gameBoard.misses.some((miss) => miss.x === x && miss.y === y)) {
+      x = Math.floor(Math.random() * this.gameBoard.size)
+      y = Math.floor(Math.random() * this.gameBoard.size)
+    }
+    return this.attack(opponent, x, y)
+  }
+
   placeShip (ship, x, y, isVertical) {
-    this.gameBoard.placeShip(ship, x, y, isVertical)
+    const newShip = new Ship(ship.name, ship.length)
+    this.gameBoard.placeShip(newShip, x, y, isVertical)
     this.domHandler.updateBoard(this.gameBoard)
   }
 
@@ -33,45 +44,6 @@ class Player {
 
   allSunk () {
     return this.gameBoard.allSunk()
-  }
-
-  setGameBoard (size) {
-    this.gameBoard = new GameBoard(size)
-  }
-
-  setRandomGameBoard () {
-    this.gameBoard = new GameBoard()
-    this.randomizeShips()
-  }
-
-  setCustomGameBoard (ships) {
-    this.gameBoard = new GameBoard()
-    ships.forEach((ship) => {
-      this.placeShip(new Ship(ship.length), ship.x, ship.y, ship.isVertical)
-    })
-  }
-
-  setGameBoardFromJSON (json) {
-    this.gameBoard = new GameBoard()
-    this.gameBoard.board = json.board
-    this.gameBoard.ships = json.ships.map((ship) => {
-      const newShip = new Ship(ship.name, ship.length)
-      newShip.hits = ship.hits
-      return newShip
-    })
-  }
-
-  getGameBoardJSON () {
-    return {
-      board: this.gameBoard.board,
-      ships: this.gameBoard.ships.map((ship) => {
-        return {
-          name: ship.name,
-          length: ship.length,
-          hits: ship.hits
-        }
-      })
-    }
   }
 
   getGameBoard () {

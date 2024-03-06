@@ -43,9 +43,6 @@ main {
                                 background-color: var(--ship-cell);
                                 color: var(--background);
                             }
-                            &.hit {
-                                background-color: var(--ship-cell-hit);
-                            }
                         }
                     }
                 }
@@ -59,6 +56,10 @@ main {
                         text-align: center;
                         border: 1px solid var(--text);
                         cursor: pointer;
+
+                        &.hit {
+                            background-color: var(--ship-cell-hit) !important;
+                        }
                     }
                 }
             }

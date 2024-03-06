@@ -1,5 +1,3 @@
-import Ship from './Ship.js'
-
 class GameBoard {
   constructor (size = 10, id) {
     this.id = id
@@ -66,7 +64,7 @@ class GameBoard {
       }
       this.ships.push(ship)
     } else {
-      console.info('Invalid placement', {
+      console.log('Invalid placement', {
         ship,
         x,
         y,
@@ -74,27 +72,6 @@ class GameBoard {
 
       })
     }
-  }
-
-  randomizeShips () {
-    const ships = [
-      new Ship('Carrier', 5),
-      new Ship('Battleship', 4),
-      new Ship('Cruiser', 3),
-      new Ship('Submarine', 3),
-      new Ship('Destroyer', 2)
-    ]
-    ships.forEach((ship) => {
-      let x
-      let y
-      let isVertical
-      do {
-        x = Math.floor(Math.random() * this.size)
-        y = Math.floor(Math.random() * this.size)
-        isVertical = Math.random() < 0.5
-      } while (!this.isValidPlacement(ship.length, x, y, isVertical))
-      this.placeShip(ship, x, y, isVertical)
-    })
   }
 }
 

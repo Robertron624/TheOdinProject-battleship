@@ -12,19 +12,6 @@ class DomHandler {
     table.classList.add('game-board')
     table.dataset.player = boardPlayerName
 
-    // const isPlayerBoard = boardPlayerName === 'Player'
-
-    // const cellClickHandler = (e) => {
-    //   const cell = e.target
-    //   const x = parseInt(cell.dataset.x)
-    //   const y = parseInt(cell.dataset.y)
-
-    //   if (board.player.name === 'Player') {
-    //     board.receiveAttack(x, y)
-    //     this.updateBoard(board)
-    //   }
-    // }
-
     for (let i = 0; i < board.size; i++) {
       const row = document.createElement('tr')
       for (let j = 0; j < board.size; j++) {
@@ -38,10 +25,9 @@ class DomHandler {
           cell.classList.add('ship')
         }
 
-        // check if the cell has been hit using isCellHit method
-        const ship = board.board[i][j]
+        const shipAtCell = board.board[i][j]
 
-        if (ship && ship.isCellHit(i, j)) {
+        if (shipAtCell && shipAtCell.isCellHit(i, j)) {
           cell.classList.add('hit')
         }
 
