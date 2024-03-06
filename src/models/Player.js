@@ -18,6 +18,12 @@ class Player {
     return result
   }
 
+  attackOwnBoard (x, y) {
+    const result = this.gameBoard.receiveAttack(x, y)
+    this.domHandler.updateBoard(this.gameBoard)
+    return result
+  }
+
   makeRandomAttack (opponent) {
     let x = Math.floor(Math.random() * this.gameBoard.size)
     let y = Math.floor(Math.random() * this.gameBoard.size)
