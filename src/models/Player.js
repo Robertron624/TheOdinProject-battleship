@@ -2,17 +2,25 @@ import GameBoard from './GameBoard.js'
 import Ship from './Ship.js'
 
 class Player {
-  constructor (name, gameBoard) {
+  constructor (name, gameBoard, domHandler) {
     this.name = name
     this.gameBoard = gameBoard || new GameBoard()
+    this.domHandler = domHandler
+  }
+
+  generateBoard () {
+    this.domHandler.generateBoard(this.gameBoard)
   }
 
   attack (opponent, x, y) {
-    return opponent.gameBoard.receiveAttack(x, y)
+    const result = opponent.gameBoard.receiveAttack(x, y)
+    this.domHandler.updateBoard(opponent.gameBoard)
+    return result
   }
 
   placeShip (ship, x, y, isVertical) {
     this.gameBoard.placeShip(ship, x, y, isVertical)
+    this.domHandler.updateBoard(this.gameBoard)
   }
 
   randomizeShips () {

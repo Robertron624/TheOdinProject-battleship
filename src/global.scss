@@ -95,11 +95,8 @@ textarea:not([rows]) {
   --text-muted: #666;
   --border: #e6e6e6;
   --border-muted: #ccc;
-  --link: #4d4dff;
-  --link-hover: #6666ff;
-  --link-visited: #ff4d4d;
-  --link-active: #ff6666;
-
+  --ship-cell: #4d4dff;
+  --ship-cell-hit: #ff4d4d;
 }
 
 // prefers color scheme
@@ -112,10 +109,8 @@ textarea:not([rows]) {
     --text-muted: #b3b3b3;
     --border: #333;
     --border-muted: #4d4d4d;
-    --link: #4d4dff;
-    --link-hover: #6666ff;
-    --link-visited: #ff4d4d;
-    --link-active: #ff6666;
+    --ship-cell: #4d4dff;
+    --ship-cell-hit: #ff4d4d;
   }
 }
 

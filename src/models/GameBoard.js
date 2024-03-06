@@ -7,6 +7,7 @@ class GameBoard {
     this.board = Array(this.size).fill(null).map(() => Array(this.size).fill(null))
     this.ships = []
     this.player = null
+    this.misses = []
   }
 
   setPlayer (player) {
@@ -17,16 +18,16 @@ class GameBoard {
     return this.player
   }
 
-  isHit (x, y) {
-    return this.board[x][y] !== null
+  isShipHit (x, y) {
+    return this.board[x][y] !== null && this.board[x][y].isHit(x, y)
   }
 
   receiveAttack (x, y) {
-    console.info("GameBoard's receiveAttack method called with x, y: ", x, y)
     if (this.board[x][y]) {
       this.board[x][y].hit(x, y)
       return true
     }
+    this.misses.push({ x, y })
     return false
   }
 

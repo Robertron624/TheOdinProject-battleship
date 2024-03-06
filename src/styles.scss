@@ -35,6 +35,20 @@ main {
             }
 
             table {
+
+                &[data-player="Player"] {
+                    tr {
+                        td {
+                            &.ship {
+                                background-color: var(--ship-cell);
+                                color: var(--background);
+                            }
+                            &.hit {
+                                background-color: var(--ship-cell-hit);
+                            }
+                        }
+                    }
+                }
             
                 tr {
                     td {
@@ -45,11 +59,6 @@ main {
                         text-align: center;
                         border: 1px solid var(--text);
                         cursor: pointer;
-
-                        &.ship {
-                            background-color: var(--link);
-                            color: var(--background);
-                        }
                     }
                 }
             }

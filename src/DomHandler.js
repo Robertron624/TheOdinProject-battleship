@@ -14,16 +14,16 @@ class DomHandler {
 
     // const isPlayerBoard = boardPlayerName === 'Player'
 
-    const cellClickHandler = (e) => {
-      const cell = e.target
-      const x = parseInt(cell.dataset.x)
-      const y = parseInt(cell.dataset.y)
+    // const cellClickHandler = (e) => {
+    //   const cell = e.target
+    //   const x = parseInt(cell.dataset.x)
+    //   const y = parseInt(cell.dataset.y)
 
-      if (board.player.name === 'Player') {
-        board.receiveAttack(x, y)
-        this.updateBoard(board)
-      }
-    }
+    //   if (board.player.name === 'Player') {
+    //     board.receiveAttack(x, y)
+    //     this.updateBoard(board)
+    //   }
+    // }
 
     for (let i = 0; i < board.size; i++) {
       const row = document.createElement('tr')
@@ -38,9 +38,12 @@ class DomHandler {
           cell.classList.add('ship')
         }
 
-        // if (board.board[i][j] && board.board[i][j].isHit(i, j)) {
-        //   cell.classList.add('hit')
-        // }
+        // check if the cell has been hit using isCellHit method
+        const ship = board.board[i][j]
+
+        if (ship && ship.isCellHit(i, j)) {
+          cell.classList.add('hit')
+        }
 
         row.appendChild(cell)
       }

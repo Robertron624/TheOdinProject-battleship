@@ -11,14 +11,14 @@ function main () {
   const domHandler = new DomHandler()
   const playerBoard = new GameBoard(GAMEBOARD_SIZE, 1)
   const computerBoard = new GameBoard(GAMEBOARD_SIZE, 2)
-  const player = new Player('Player', playerBoard)
-  const computer = new Player('Computer', computerBoard)
+  const humanPlayer = new Player('Player', playerBoard, domHandler)
+  const computer = new Player('Computer', computerBoard, domHandler)
 
-  playerBoard.setPlayer(player)
+  playerBoard.setPlayer(humanPlayer)
   computerBoard.setPlayer(computer)
 
-  domHandler.generateBoard(playerBoard)
-  domHandler.generateBoard(computerBoard)
+  humanPlayer.generateBoard()
+  computer.generateBoard()
 
   const carrier = new Ship('Carrier', 5)
   const battleship = new Ship('Battleship', 4)
@@ -26,21 +26,60 @@ function main () {
   // const submarine = new Ship('Submarine', 3)
   // const destroyer = new Ship('Destroyer', 2)
 
-  player.placeShip(carrier, 0, 0, true)
-  domHandler.updateBoard(playerBoard)
+  humanPlayer.placeShip(carrier, 0, 0, true)
+  humanPlayer.placeShip(battleship, 1, 1, false)
 
-  player.placeShip(battleship, 1, 1, false)
-  domHandler.updateBoard(playerBoard)
-
-  // Placing ships for the computer
   computer.placeShip(carrier, 0, 0, true)
-  domHandler.updateBoard(computerBoard)
-
   computer.placeShip(battleship, 1, 1, false)
-  domHandler.updateBoard(computerBoard)
 
-  // attacking the player
-  playerBoard.receiveAttack(0, 0)
+  computer.attack(humanPlayer, 0, 0)
+  computer.attack(humanPlayer, 1, 3)
+
+  // const placeShip = (data) => {
+  //   const { ship, x, y, isVertical, board } = data
+
+  //   player.placeShip(ship, x, y, isVertical)
+  //   domHandler.updateBoard(board)
+  // }
+
+  // placeShip({
+  //   ship: carrier,
+  //   x: 0,
+  //   y: 0,
+  //   isVertical: true,
+  //   board: playerBoard
+  // })
+
+  // placeShip({
+  //   ship: battleship,
+  //   x: 1,
+  //   y: 1,
+  //   isVertical: false,
+  //   board: playerBoard
+  // })
+
+  // // place the computer's ships
+  // placeShip({
+  //   ship: carrier,
+  //   x: 0,
+  //   y: 0,
+  //   isVertical: true,
+  //   board: computerBoard
+  // })
+
+  // placeShip({
+  //   ship: battleship,
+  //   x: 1,
+  //   y: 1,
+  //   isVertical: false,
+  //   board: computerBoard
+  // })
+
+  // attack({
+  //   x: 0,
+  //   y: 0,
+  //   board: playerBoard
+  // })
 }
 
 window.onload = main
