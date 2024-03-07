@@ -17,8 +17,8 @@ describe('Ship', () => {
   })
 
   it('can be hit', () => {
-    ship.hit(2)
-    expect(ship.hits[2]).toBe(true)
+    ship.hit(0, 0)
+    expect(ship.hits).toEqual([{ x: 0, y: 0 }])
   })
 
   it('is not sunk initially', () => {

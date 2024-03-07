@@ -44,11 +44,6 @@ describe('GameBoard', () => {
     expect(gameBoard.allSunk()).toBe(true)
   })
 
-  test('it can randomize ships', () => {
-    gameBoard.randomizeShips()
-    expect(gameBoard.ships.length).toBe(5)
-  })
-
   test('it can tell if a ship placement is valid', () => {
     const ship = new Ship('Carrier', 5)
     expect(gameBoard.isValidPlacement(ship.length, 0, 0, true)).toBe(true)

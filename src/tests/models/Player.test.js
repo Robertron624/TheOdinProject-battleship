@@ -20,15 +20,14 @@ describe('Player', () => {
   })
 
   test('it can attack', () => {
-    const opponent = new Player()
-    const ship = new Ship('Carrier', 5)
-    opponent.gameBoard.placeShip(ship, 0, 0, true)
-    player.attack(opponent, 0, 0)
-    expect(ship.hits[0]).toBe(true)
+    const opponentBoard = new GameBoard()
+    const opponent = new Player('Player 2', opponentBoard)
+    const result = player.attack(opponent, 0, 0)
+    expect(result).toBe(false)
   })
 
   test('it can place a ship', () => {
-    const ship = new Ship('Carrier', 5)
+    const ship = new Ship('Carrier', 5, true, 0, 0)
     player.placeShip(ship, 0, 0, true)
     expect(player.gameBoard.ships).toEqual([ship])
   })

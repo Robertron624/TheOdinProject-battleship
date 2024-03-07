@@ -15,6 +15,7 @@ class DomHandler {
 
       // Use the new method attackOwnBoard for attacking the player's own board
       board.player.attackOwnBoard(parseInt(x), parseInt(y))
+      this.updateBoard(board)
     }
 
     const table = document.createElement('table')

@@ -1,9 +1,11 @@
 class Ship {
-  constructor (name, length, isVertical = false) {
+  constructor (name, length, isVertical = false, x = null, y = null) {
     this.name = name
     this.length = length
     this.hits = []
     this.isVertical = isVertical
+    this.x = x
+    this.y = y
   }
 
   hit (x, y) {
