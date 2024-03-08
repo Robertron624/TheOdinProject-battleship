@@ -71,23 +71,27 @@ class DomHandler {
 
   updateBoard (board) {
     const boardId = board.id
-
-    // find the table with the matching id
     const tableWrapper = this.container.querySelector(`[data-id="${boardId}"]`)
+    const table = tableWrapper.querySelector('table')
 
-    const tableToDelete = tableWrapper.querySelector('table')
-    tableWrapper.removeChild(tableToDelete)
+    for (let i = 0; i < board.size; i++) {
+      for (let j = 0; j < board.size; j++) {
+        const cell = table.rows[i].cells[j]
 
-    const table = this.#createBoard(board)
-    tableWrapper.appendChild(table)
+        // Update cell based on game board state
+        if (board.board[i][j] !== null) {
+          cell.classList.add('ship')
+        }
 
-    // update the boards array
-    this.boards = this.boards.map((board) => {
-      if (board.id === boardId) {
-        return table
+        const shipAtCell = board.board[i][j]
+
+        if (shipAtCell && shipAtCell.isCellHit(i, j)) {
+          cell.classList.add('hit')
+        } else {
+          cell.classList.remove('hit')
+        }
       }
-      return board
-    })
+    }
   }
 }
 

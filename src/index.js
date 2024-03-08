@@ -14,16 +14,17 @@ function main () {
   const playerBoard = new GameBoard(GAMEBOARD_SIZE, 1)
   const computerBoard = new GameBoard(GAMEBOARD_SIZE, 2)
   const humanPlayer = new Player('Player', playerBoard)
-  const computer = new Player('Computer', computerBoard)
+  const computerPlayer = new Player('Computer', computerBoard)
 
   playerBoard.setPlayer(humanPlayer)
-  computerBoard.setPlayer(computer)
+  computerBoard.setPlayer(computerPlayer)
 
   // handling the game logic and the DOM
 
-  const placeShip = (ship, x, y, isVertical, gameBoard) => {
-    gameBoard.placeShip(ship, x, y, isVertical)
-    domHandler.updateBoard(gameBoard)
+  const placeShip = (ship, x, y, isVertical, player) => {
+    const result = player.placeShip(ship, x, y, isVertical)
+    domHandler.updateBoard(player.gameBoard)
+    return result
   }
 
   const attack = (attacker, opponent, x, y) => {
@@ -38,21 +39,21 @@ function main () {
   const carrier = new Ship('Carrier', 5)
   const battleship = new Ship('Battleship', 4)
 
-  placeShip(carrier, 0, 0, true, playerBoard)
-  placeShip(battleship, 1, 1, false, playerBoard)
+  placeShip(carrier, 0, 0, true, humanPlayer)
+  placeShip(battleship, 1, 1, false, humanPlayer)
 
-  placeShip(carrier, 0, 0, true, computerBoard)
-  placeShip(battleship, 1, 1, false, computerBoard)
+  placeShip(carrier, 0, 0, true, computerPlayer)
+  placeShip(battleship, 1, 1, false, computerPlayer)
 
   // computer attack humanPlayer
 
-  attack(computer, humanPlayer, 0, 0)
-  attack(computer, humanPlayer, 1, 2)
+  attack(computerPlayer, humanPlayer, 0, 0)
+  attack(computerPlayer, humanPlayer, 1, 2)
 
   // humanPlayer attack computer
 
-  attack(humanPlayer, computer, 0, 0)
-  attack(humanPlayer, computer, 3, 0)
+  attack(humanPlayer, computerPlayer, 0, 0)
+  attack(humanPlayer, computerPlayer, 3, 0)
 }
 
 window.onload = main

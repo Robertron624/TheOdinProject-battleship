@@ -24,7 +24,7 @@ class Ship {
   }
 
   isCellHit (x, y) {
-    return this.isHit(x, y)
+    return this.hits.some((hit) => hit.x === x && hit.y === y)
   }
 
   isVertical () {
