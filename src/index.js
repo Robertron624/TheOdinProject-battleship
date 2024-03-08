@@ -1,6 +1,6 @@
 import './global.scss'
 import './styles.scss'
-import DomHandler from './DOMHandler.js'
+import DomHandler from './models/DomHandler.js'
 import GameBoard from './models/GameBoard.js'
 import Player from './models/Player.js'
 import Ship from './models/Ship.js'
